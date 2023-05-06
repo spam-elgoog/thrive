@@ -1,7 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.8.4)
+      public_suffix (>= 2.0.2, < 6.0)
     diff-lcs (1.5.0)
+    json-schema (4.0.0)
+      addressable (>= 2.8)
+    public_suffix (5.0.1)
+    require_all (3.0.0)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -20,6 +26,8 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  json-schema
+  require_all
   rspec (~> 3.10)
 
 BUNDLED WITH
