@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require_relative '../dto/user'
+
+require_relative "../dto/user"
 
 module User
   class Processor
@@ -11,12 +12,12 @@ module User
     end
 
     def perform
-      @data.each_with_object([]) do |user,arr|
+      @data.each_with_object([]) do |user, arr|
         unless valid?(user)
           puts "Invalid user data: #{user}"
           next
         end
-        
+
         arr << DTO_KLASS.new(**user)
       end
     end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require_relative '../dto/company'
+
+require_relative "../dto/company"
 
 module Company
   class Processor

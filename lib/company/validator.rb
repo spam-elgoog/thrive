@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'json'
-require 'json-schema'
+require "json"
+require "json-schema"
 
 module Company
   class Validator
@@ -13,23 +13,23 @@ module Company
   end
 
   COMPANY_SCHEMA = {
-    "title": "Company",
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "integer"
+    title: "Company",
+    type: "object",
+    properties: {
+      id: {
+        type: "integer"
       },
-      "name": {
-        "type": "string"
+      name: {
+        type: "string"
       },
-      "top_up": {
-        "type": "integer"
+      top_up: {
+        type: "integer"
       },
-      "email_status": {
-        "type": "boolean"
+      email_status: {
+        type: "boolean"
       }
     },
-    "required": [
+    required: [
       "id",
       "name",
       "top_up",

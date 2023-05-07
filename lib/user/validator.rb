@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'json'
-require 'json-schema'
+require "json"
+require "json-schema"
 
 module User
   class Validator
@@ -13,9 +13,9 @@ module User
   end
 
   USER_SCHEMA = {
-    "title": "User",
-    "type": "object",
-    "required": [
+    title: "User",
+    type: "object",
+    required: [
       "id",
       "first_name",
       "last_name",
@@ -25,33 +25,33 @@ module User
       "active_status",
       "tokens"
     ],
-    "properties": {
-      "id": {
-        "type": "integer"
+    properties: {
+      id: {
+        type: "integer"
       },
-      "first_name": {
-        "type": "string"
+      first_name: {
+        type: "string"
       },
-      "last_name": {
-        "type": "string"
+      last_name: {
+        type: "string"
       },
-      "email": {
-        "type": "string",
-        "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-        "format": "email"
+      email: {
+        type: "string",
+        pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$",
+        format: "email"
       },
-      "company_id": {
-        "type": "integer"
+      company_id: {
+        type: "integer"
       },
-      "email_status": {
-        "type": "boolean"
+      email_status: {
+        type: "boolean"
       },
-      "active_status": {
-        "type": "boolean"
+      active_status: {
+        type: "boolean"
       },
-      "tokens": {
-        "type": "integer"
+      tokens: {
+        type: "integer"
       }
-    },
+    }
   }.freeze
 end
