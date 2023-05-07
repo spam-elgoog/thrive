@@ -2,8 +2,9 @@
 
 source "https://rubygems.org"
 
-group :test do
+group :development, :test do
   gem 'rspec', '~> 3.10'
+  gem 'standard'
 end
 gem 'json-schema'
 gem 'require_all'
