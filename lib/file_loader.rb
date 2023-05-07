@@ -15,7 +15,7 @@ class FileLoader
   def load_data
     unless defined? @data
       json_data = File.read(file_name)
-      @data = parser.parse(json_data)
+      @data = parser.parse(json_data, symbolize_name: true)
     end
     @data
   end

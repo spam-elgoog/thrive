@@ -1,4 +1,4 @@
-require 'user/validator'
+require_relative '../../lib/user/validator'
 
 RSpec.describe User::Validator do
   describe '.validate_json' do

@@ -3,6 +3,8 @@ require_relative '../dto/user'
 
 module User
   class Processor
+    DTO_KLASS = DTO::User
+
     def initialize(data, validator)
       @data = data
       @validator = validator
@@ -15,7 +17,7 @@ module User
           next
         end
         
-        arr << DTO::User.new(**user.transform_keys(&:to_sym))
+        arr << DTO_KLASS.new(**user)
       end
     end
 
