@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require "logger"
 require_relative "lib/services/files_processor"
 
 namespace :challenge do
@@ -8,9 +9,15 @@ namespace :challenge do
   task :process, [:users_file, :companies_file] do |task, args|
     users_file = FilenamesPrompter.prompt_users_filename(args[:users_file])
     companies_file = FilenamesPrompter.prompt_companies_filename(args[:companies_file])
-
-    Services::FilesProcessor
-      .new(users_filename: users_file, companies_filename: companies_file)
-      .process
+    begin
+      Services::FilesProcessor
+        .new(users_filename: users_file, companies_filename: companies_file)
+        .process
+    rescue => e
+      logger.error(e)
+    end
+  end
+  def logger
+    Logger.new("logs.log")
   end
 end

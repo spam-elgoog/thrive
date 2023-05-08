@@ -31,3 +31,5 @@ Im not sure if I misread something in any case
     ```sh
       rake challenge:process\[data/users2.json,data/companies2.json\]
     ```
+
+#### Logging to `logs.log` in root

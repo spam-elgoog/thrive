@@ -24,7 +24,7 @@ RSpec.describe FilenamesPrompter do
           expect {
             result = described_class.prompt_users_filename(non_existent_file)
             expect(result).to eq(valid_tempfile_path)
-          }.to output(/Please enter a valid JSON format filename for users: /).to_stdout
+          }.to output(/WARN - File #{non_existent_file} does not exist/).to_stdout
         end
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe FilenamesPrompter do
             expect {
               result = described_class.prompt_users_filename(invalid_tempfile.path)
               expect(result).to eq(valid_tempfile_path)
-            }.to output(/Please enter a valid JSON format filename for users: /).to_stdout
+            }.to output(/WARN - File must have a .json extension/).to_stdout
           end
         end
       end

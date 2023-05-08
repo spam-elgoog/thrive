@@ -23,7 +23,10 @@ module Services
     end
 
     def process
-      transactions
+      if transactions.size == 0
+        puts "No transaction created!."
+        return
+      end
 
       ledger = LedgerGenerator.new(
         transactions: notify_users,
@@ -44,11 +47,11 @@ module Services
     end
 
     def valid_users
-      @valid_users = User::UserRecords.new(@users_filename).users
+      @valid_users ||= User::UserRecords.new(@users_filename).users
     end
 
     def valid_companies
-      @valid_companies = Company::CompanyRecords.new(@companies_filename).companies
+      @valid_companies ||= Company::CompanyRecords.new(@companies_filename).companies
     end
 
     def active_users
@@ -76,8 +79,6 @@ module Services
     end
 
     def send_email?(company_id, user_id)
-      puts "ID #{user_id}"
-      puts "COMPany ID #{company_id}"
       valid_companies[company_id].email_status && active_users[user_id].notify?
     end
 

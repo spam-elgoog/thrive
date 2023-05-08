@@ -16,7 +16,13 @@ class FileLoader
   def load_data
     unless defined? @data
       json_data = File.read(file_name)
-      @data = parser.parse(json_data, symbolize_names: true)
+      begin
+        @data = parser.parse(json_data, symbolize_names: true)
+      rescue JSON::ParserError => e
+        puts "FileLoader::Parsing error for #{file_name}, fix the file and try again."
+        puts "Check the `logs.log` file in root for details."
+        raise e
+      end
     end
     @data
   end

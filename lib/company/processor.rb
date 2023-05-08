@@ -20,7 +20,7 @@ module Company
         end
         company = DTO_KLASS.new(**company)
         if company_store[company.id]
-          puts "WARN - Company record with the same id. "\
+          puts "WARN - Company record with the same id. " \
             "No tokens will be processed for duplicate #{company.inspect}."
           next
         end
