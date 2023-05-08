@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"first_name": "Peter",
+		"last_name": "Studnicka",
+		"email": "peter.studnicka@test.com",
+		"company_id": 2,
+		"email_status": true,
+		"active_status": true,
+		"tokens": 23
+	},
+	{
+		"id": 2,
+		"first_name": "Shirin",
+		"last_name": "Piran",
+		"email": "shiring.piran@test.com",
+		"company_id": 4,
+		"email_status": false,
+		"active_status": true,
+		"tokens": 96
+	},
+	{
+		"id": 3,
+		"first_name": "Magic",
+		"last_name": "Mike",
+		"email": "magic.mike@notreal.com",
+		"company_id": 3,
+		"email_status": false,
+		"active_status": true,
+		"tokens": 69
+	}
+]
