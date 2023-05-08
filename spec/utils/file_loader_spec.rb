@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "rspec"
-require "file_loader"
 require "tempfile"
+require_relative "../../lib/utils/file_loader"
 
 RSpec.describe FileLoader do
   let(:json_data) { '{"foo": "bar"}' }
@@ -15,7 +15,7 @@ RSpec.describe FileLoader do
 
   describe "#load_data" do
     it "loads JSON data from a file" do
-      loader = FileLoader.new(temp_file.path,)
+      loader = FileLoader.new(temp_file.path)
       expect(loader.load_data).to eq({foo: "bar"})
     end
 
