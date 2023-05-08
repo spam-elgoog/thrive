@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative "lib/services/files_processor"
+
+namespace :challenge do
+  desc "Process users and companies files"
+  task :process, [:users_file, :companies_file] do |task, args|
+    users_file = FilenamesPrompter.prompt_users_filename(args[:users_file])
+    companies_file = FilenamesPrompter.prompt_companies_filename(args[:companies_file])
+
+    Services::FilesProcessor
+      .new(users_filename: users_file, companies_filename: companies_file)
+      .process
+  end
+end
