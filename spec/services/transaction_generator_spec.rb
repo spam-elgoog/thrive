@@ -3,7 +3,7 @@ require_relative "../../lib/dto/user"
 require_relative "../../lib/dto/company"
 
 RSpec.describe Services::TransactionGenerator do
-  let(:users) { [] }
+  let(:users) { {} }
   let(:companies) { {} }
 
   describe "#perform" do
@@ -26,10 +26,26 @@ RSpec.describe Services::TransactionGenerator do
 
     context "when there are no matching companies for users" do
       let(:users) do
-        [
-          DTO::User.new(id: 1, first_name: "John", last_name: "Doe", email: "john.doe@example.com", company_id: 1, email_status: true, active_status: true, tokens: 100),
-          DTO::User.new(id: 2, first_name: "Jane", last_name: "Doe", email: "jane.doe@example.com", company_id: 2, email_status: true, active_status: true, tokens: 50)
-        ]
+        {
+          1 => DTO::User.new(
+            id: 1, first_name: "John",
+            last_name: "Doe",
+            email: "john.doe@example.com",
+            company_id: 1,
+            email_status: true,
+            active_status: true,
+            tokens: 100
+          ),
+          2 => DTO::User.new(
+            id: 2, first_name: "Jane",
+            last_name: "Doe",
+            email: "jane.doe@example.com",
+            company_id: 2,
+            email_status: true,
+            active_status: true,
+            tokens: 50
+          )
+        }
       end
 
       let(:companies) do
@@ -53,10 +69,26 @@ RSpec.describe Services::TransactionGenerator do
 
     context "when all users have matching companies" do
       let(:users) do
-        [
-          DTO::User.new(id: 1, first_name: "John", last_name: "Doe", email: "john.doe@example.com", company_id: 1, email_status: true, active_status: true, tokens: 100),
-          DTO::User.new(id: 2, first_name: "Jane", last_name: "Doe", email: "jane.doe@example.com", company_id: 2, email_status: true, active_status: true, tokens: 50)
-        ]
+        {
+          1 => DTO::User.new(
+            id: 1, first_name: "John",
+            last_name: "Doe",
+            email: "john.doe@example.com",
+            company_id: 1,
+            email_status: true,
+            active_status: true,
+            tokens: 100
+          ),
+          2 => DTO::User.new(
+            id: 2, first_name: "Jane",
+            last_name: "Doe",
+            email: "jane.doe@example.com",
+            company_id: 2,
+            email_status: true,
+            active_status: true,
+            tokens: 50
+          )
+        }
       end
 
       let(:companies) do

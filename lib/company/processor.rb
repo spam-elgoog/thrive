@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "logger"
 require_relative "../dto/company"
 
 module Company
@@ -18,6 +19,11 @@ module Company
           next
         end
         company = DTO_KLASS.new(**company)
+        if company_store[company.id]
+          puts "WARN - Company record with the same id. "\
+            "No tokens will be processed for duplicate #{company.inspect}."
+          next
+        end
         company_store[company.id] = company
       end
     end
@@ -26,6 +32,10 @@ module Company
 
     def valid?(record)
       @validator.validate_json(record)
+    end
+
+    def logger
+      @logger ||= Logger.new("logs.log")
     end
   end
 end

@@ -32,41 +32,45 @@ RSpec.describe User::Processor do
 
   describe "#perform" do
     context "when given valid user data" do
-      it "returns an array of DTO::User objects" do
+      it "returns an hash of DTO::User objects" do
         processor = User::Processor.new(valid_user_data, validator)
         users = processor.perform
 
-        expect(users).to be_an(Array)
-        expect(users).to all(be_an_instance_of(DTO::User))
+        expect(users).to be_an(Hash)
+        expect(users).to match(
+          {
+            1 => be_an_instance_of(DTO::User)
+          }
+        )
       end
     end
 
     context "when given invalid user data" do
-      it "prints an error message and returns an empty array" do
+      it "prints an error message and returns an empty hash" do
         processor = User::Processor.new(invalid_user_data, validator)
         expect {
           users = processor.perform
-          expect(users).to eq([])
-        }.to output("Invalid user data: #{invalid_user_data.first}\n").to_stdout
+          expect(users).to eq({})
+        }.to output(/Invalid user data: #{invalid_user_data.first}/).to_stdout
       end
     end
 
     context "when given mixed user data" do
-      it "returns an array of DTO::User objects with one valid user" do
+      it "returns an hash of DTO::User objects with one valid user" do
         processor = User::Processor.new(mixed_user_data, validator)
         users = processor.perform
 
-        expect(users).to be_an(Array)
+        expect(users).to be_an(Hash)
         expect(users.size).to eq(1)
-        expect(users.first).to be_an_instance_of(DTO::User)
-        expect(users.first.id).to eq(mixed_user_data.last[:id])
+        expect(users[1]).to be_an_instance_of(DTO::User)
+        expect(users[1].id).to eq(mixed_user_data.last[:id])
       end
 
       it "prints an error message for the incomplete user data" do
         processor = User::Processor.new(mixed_user_data, validator)
         expect {
           processor.perform
-        }.to output("Invalid user data: #{mixed_user_data.first}\n").to_stdout
+        }.to output(/Invalid user data: #{mixed_user_data.first}/).to_stdout
       end
     end
   end

@@ -22,7 +22,7 @@ module Services
     # users: Array
     # companies: Hash
     def initialize(users:, companies:)
-      @users = users || []
+      @users = users || {}
       @companies = companies || {}
     end
 
@@ -33,16 +33,18 @@ module Services
     private
 
     def process
-      @users.each_with_object({}) do |user, transactions_by_company|
+      transactions_by_company = {}
+      @users.each_pair do |user_id, user|
         company = @companies[user.company_id]
         unless company
           ## TODO: create standard result object
           puts "Company does not exist #{user.company_id}"
           next
         end
-        processed_transactions = transactions_by_company.fetch(company.id, [])
-        transactions_by_company[company.id] = processed_transactions << create_transaction(user, company)
+        processed_transactions_array = transactions_by_company.fetch(company.id, [])
+        transactions_by_company[company.id] = processed_transactions_array << create_transaction(user, company)
       end
+      transactions_by_company
     end
 
     def create_transaction(user, company)
