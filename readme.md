@@ -21,7 +21,10 @@ Im not sure if I misread something in any case
    ```
      ruby challenge.rb
    ```
-2. Running using the rakefile (with CLI params) for alternate files testing.
+2. Running using the `rakefile` (with CLI params or without) for alternate files testing.
+   ```
+      rake challenge:process    
+   ```
   - #### Bash
     User relative paths for the file names (data/users.json, data/companies.json),
     if for example to run the rakefile with the originally supplied users and companies files
