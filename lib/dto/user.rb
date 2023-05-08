@@ -13,5 +13,9 @@ module DTO
     def active?
       active_status
     end
+
+    def <=>(other)
+      "#{last_name} #{first_name}" <=> "#{other.last_name} #{other.first_name}"
+    end
   end
 end

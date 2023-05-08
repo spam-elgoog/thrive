@@ -53,4 +53,27 @@ RSpec.describe DTO::User do
       end
     end
   end
+
+  describe "#<=>" do
+    let(:user_attrs) do
+      {
+        id: 1,
+        first_name: "John",
+        last_name: "Doe",
+        email: "john.doe@example.com",
+        company_id: 1,
+        email_status: true,
+        active_status: true,
+        tokens: 100
+      }
+    end
+
+    it "sorts users by last name and first name" do
+      user1 = described_class.new(**user_attrs.merge(first_name: "John", last_name: "Doe"))
+      user2 = described_class.new(**user_attrs.merge(first_name: "Jane", last_name: "Doe"))
+      user3 = described_class.new(**user_attrs.merge(first_name: "John", last_name: "Smith"))
+
+      expect([user1, user2, user3].sort).to eq([user2, user1, user3])
+    end
+  end
 end
