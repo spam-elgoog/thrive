@@ -1,8 +1,8 @@
-require_relative "../lib/transaction_generator"
-require_relative "../lib/dto/user"
-require_relative "../lib/dto/company"
+require_relative "../../lib/services/transaction_generator"
+require_relative "../../lib/dto/user"
+require_relative "../../lib/dto/company"
 
-RSpec.describe TransactionGenerator do
+RSpec.describe Services::TransactionGenerator do
   let(:users) { [] }
   let(:companies) { {} }
 
